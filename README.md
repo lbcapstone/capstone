@@ -1,2 +1,5 @@
-# Capstone Project
-This is the repostitory for my capstone project.
+# What is data?
+Data is simply information. Data has been used for thousands of years, for as long as humans have existed. For writing down how many animals you have to sell each day and performing simple mathematic computations to them, to more modern examples, such as global trade documents by different civilizations. Data has usually been relatively linear throughout the years, increasing as the human race developed new sciences and technologies. However, with the introduction of the internet, the amount of data stored and used has skyrocketed. And where does this data come from? Well, you.
+
+# What is metadata?
+When data is collected, many of the times it is actually **metadata**, data about data. This could be a timestamp, or a location, where other data takes place. It could be the person that you called, or where and when you used your credit card. The actual body of the data, like the transcript of the call or the items that you purchased are simply not that important 99% of the time. This metadata is all that is needed to figure almost everything out about a person.
