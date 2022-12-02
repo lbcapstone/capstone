@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Capstone</title>
+</head>
+<body>
+    <p id="opened"><b>Opened at: </b>Unknown</p>
+    <p id="browser-name"><b>Browser Name: </b>Unknown</p>
+    <p id="browser-engine"><b>Browser Engine: </b>Unknown</p>
+    <p id="browser-version"><b>Browser Version: </b>Unknown</p>
+    <p id="browser-language"><b>Browser Language: </b>Unknown</p>
+    <p id="browser-online"><b>Browser Online: </b>Unknown</p>
+    <p id="browser-platform"><b>Browser Platform: </b>Unknown</p>
+    <p id="browser-dataStorage"><b>Browser Data Storage: </b>Unknown</p>
+    <p id="latitude"><b>Latitude: </b>Unknown</p>
+    <p id="longitude"><b>Longitude: </b>Unknown</p>
+    <p id="altitude"><b>Altitude: </b>Unknown</p>
+    <p id="heading"><b>Heading: </b>Unknown</p>
+    <p id="ip"><b>IP Address: </b>Unknown</p>
+</body>
+<script src="https://cdn.jsdelivr.net/gh/joeymalvinni/webrtc-ip/dist/bundle.dev.js"></script>
+<script>
+    var info= {
+    timeOpened:new Date(),
+    timezone:(new Date()).getTimezoneOffset()/60,
+
+    pageon(){return window.location.pathname},
+    referrer(){return document.referrer},
+    previousSites(){return history.length},
+
+    browserName(){return navigator.appName},
+    browserEngine(){return navigator.product},
+    browserVersion1a(){return navigator.appVersion},
+    browserVersion1b(){return navigator.userAgent},
+    browserLanguage(){return navigator.language},
+    browserOnline(){return navigator.onLine},
+    browserPlatform(){return navigator.platform},
+    javaEnabled(){return navigator.javaEnabled()},
+    dataCookiesEnabled(){return navigator.cookieEnabled},
+    dataCookies1(){return document.cookie},
+    dataCookies2(){return decodeURIComponent(document.cookie.split(";"))},
+    dataStorage(){return localStorage},
+
+    sizeScreenW(){return screen.width},
+    sizeScreenH(){return screen.height},
+    sizeDocW(){return document.width},
+    sizeDocH(){return document.height},
+    sizeInW(){return innerWidth},
+    sizeInH(){return innerHeight},
+    sizeAvailW(){return screen.availWidth},
+    sizeAvailH(){return screen.availHeight},
+    scrColorDepth(){return screen.colorDepth},
+    scrPixelDepth(){return screen.pixelDepth},
+
+
+    latitude(){return position.coords.latitude},
+    longitude(){return position.coords.longitude},
+    accuracy(){return position.coords.accuracy},
+    altitude(){return position.coords.altitude},
+    altitudeAccuracy(){return position.coords.altitudeAccuracy},
+    heading(){return position.coords.heading},
+    speed(){return position.coords.speed},
+    timestamp(){return position.timestamp},
+};
+
+// document.write(info.pageon());
+// document.write(info.accuracy());
+// document.write(info.altitude());
+// document.write(info.altitudeAccuracy());
+// document.write(info.heading());
+// document.write(info.sizeInW());
+// document.write(info.sizeInH());
+// document.write(info.scrColorDepth());
+// document.write(info.scrPixelDepth());
+
+navigator.geolocation.getCurrentPosition((position) => {
+    document.getElementById("latitude").innerHTML = `<b>Latitude:</b> ${position.coords.latitude} with ${position.coords.accuracy}% accuracy`;
+    document.getElementById("longitude").innerHTML = `<b>Longitude:</b> ${position.coords.longitude} with ${position.coords.accuracy}% accuracy`;
+    // document.getElementById("altitude").innerHTML = `<b>Altitude:</b> ${position.timestamp}`;
+    // document.getElementById("heading").innerHTML = `<b>Heading:</b> ${position.coords.heading}`;
+});
+
+document.getElementById("opened").innerHTML = `<b>Opened at:</b> ${info.timeOpened}`;
+
+document.getElementById("browser-name").innerHTML = `<b>Browser Name:</b> ${info.browserName()}`;
+document.getElementById("browser-engine").innerHTML = `<b>Browser Engine:</b> ${info.browserEngine()}`;
+document.getElementById("browser-version").innerHTML = `<b>Browser Version:</b> ${info.browserVersion1a()}`;
+document.getElementById("browser-language").innerHTML = `<b>Browser Language:</b> ${info.browserLanguage()}`;
+document.getElementById("browser-online").innerHTML = `<b>Browser Online:</b> ${info.browserOnline()}`;
+document.getElementById("browser-platform").innerHTML = `<b>Browser Platform:</b> ${info.browserPlatform()}`;
+
+dataStorageString = "";
+for (item in info.dataStorage()) {
+    dataStorageString += "\n" + item;
+}
+document.getElementById("browser-dataStorage").innerHTML = `<b>Browser Data Storage:</b> ${dataStorageString}`;
+getIPs().then(res => document.getElementById("ip").innerHTML = `<b>IP Address:</b> ${res}`);
+</script>
+</html>
